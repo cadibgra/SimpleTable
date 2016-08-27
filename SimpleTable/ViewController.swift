@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var restaurantNames = ["Cafe Deadend", "Homei", "Teakha", "Cafe Loisl", "Petite Oyster", "For Kee Restaurant", "Po's Atelier", "Bourke Street Bakery",
-                           "Haigh's Chocolate", "Palomino Espresso", "Upstate", "Traif", "Graham Avenue Meats And Deli", "Waffle & Wolf", "Five Leaves",
-                           "Cafe Lore", "Confessional", "Barrafina", "Donostia", "Royal Oak", "CASK Pub and Kitchen"]
+    var restaurantNames = [TableRow(description: "Cafe Deadend", imageName: "cafedeadend"), TableRow(description: "Homei", imageName: "homei"),
+                           TableRow(description:"Teakha", imageName: "teakha"), TableRow(description:"Cafe Loisl", imageName: "cafeloisl"),
+                           TableRow(description:"Petite Oyster", imageName: "petiteoyster"), TableRow(description: "For Kee Restaurant", imageName: "forkeerestaurant"), TableRow(description: "Po's Atelier", imageName: "posatelier"), TableRow(description:"Bourke Street Bakery",imageName: "bourkestreetbakery"), TableRow(description:"Haigh's Chocolate", imageName: "haighschocolate"), TableRow(description:"Palomino Espresso", imageName: "palominoespresso"), TableRow(description:"Upstate", imageName: "upstate"), TableRow(description:"Traif", imageName: "traif"), TableRow(description:"Graham Avenue Meats And Deli", imageName: "grahamavenuemeats"), TableRow(description:"Waffle & Wolf", imageName: "wafflewolf"), TableRow(description:"Five Leaves", imageName: "fiveleaves"), TableRow(description:"Cafe Lore", imageName: "cafelore"),TableRow(description: "Confessional", imageName: "confessional"), TableRow(description: "Barrafina", imageName: "barrafina"), TableRow(description: "Donostia", imageName: "donostia"), TableRow(description: "Royal Oak", imageName: "royaloak"), TableRow(description: "CASK Pub and Kitchen", imageName: "upstate")]
     
     
     override func viewDidLoad() {
@@ -35,8 +35,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
         //Configure the Cell ...
-        cell.textLabel?.text = restaurantNames[indexPath.row]
+        let tableRow = restaurantNames[indexPath.row]
+        
+        cell.textLabel?.text = tableRow.description
+        cell.imageView?.image = UIImage(named: tableRow.imageName)
         return cell;
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 
 }
